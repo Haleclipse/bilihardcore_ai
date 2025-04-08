@@ -1,0 +1,11 @@
+framework module mobile_scanner {
+  umbrella header "mobile_scanner-umbrella.h"
+
+  export *
+  module * { export * }
+}
+
+module mobile_scanner.Swift {
+  header "mobile_scanner-Swift.h"
+  requires objc
+}

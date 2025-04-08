@@ -1,0 +1,28 @@
+{
+  "" : {
+    "diagnostics" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/mobile_scanner-master.dia",
+    "emit-module-dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/mobile_scanner-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/mobile_scanner-master-emit-module.dia",
+    "swift-dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/mobile_scanner-master.swiftdeps"
+  },
+  "/Users/haleclipse/.pub-cache/hosted/pub.dev/mobile_scanner-3.5.7/macos/Classes/DetectionSpeed.swift" : {
+    "const-values" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/DetectionSpeed.swiftconstvalues",
+    "dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/DetectionSpeed.d",
+    "diagnostics" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/DetectionSpeed.dia",
+    "index-unit-output-path" : "/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/DetectionSpeed.o",
+    "llvm-bc" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/DetectionSpeed.bc",
+    "object" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/DetectionSpeed.o",
+    "swift-dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/DetectionSpeed.swiftdeps",
+    "swiftmodule" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/DetectionSpeed~partial.swiftmodule"
+  },
+  "/Users/haleclipse/.pub-cache/hosted/pub.dev/mobile_scanner-3.5.7/macos/Classes/MobileScannerPlugin.swift" : {
+    "const-values" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/MobileScannerPlugin.swiftconstvalues",
+    "dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/MobileScannerPlugin.d",
+    "diagnostics" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/MobileScannerPlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/MobileScannerPlugin.o",
+    "llvm-bc" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/MobileScannerPlugin.bc",
+    "object" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/MobileScannerPlugin.o",
+    "swift-dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/MobileScannerPlugin.swiftdeps",
+    "swiftmodule" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/Objects-normal/arm64/MobileScannerPlugin~partial.swiftmodule"
+  }
+}

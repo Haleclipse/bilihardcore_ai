@@ -1,0 +1,28 @@
+{
+  "" : {
+    "diagnostics" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/shared_preferences_foundation-master.dia",
+    "emit-module-dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/shared_preferences_foundation-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/shared_preferences_foundation-master-emit-module.dia",
+    "swift-dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/shared_preferences_foundation-master.swiftdeps"
+  },
+  "/Users/haleclipse/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/darwin/shared_preferences_foundation/Sources/shared_preferences_foundation/messages.g.swift" : {
+    "const-values" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.swiftconstvalues",
+    "dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.d",
+    "diagnostics" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.dia",
+    "index-unit-output-path" : "/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.o",
+    "llvm-bc" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.bc",
+    "object" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.o",
+    "swift-dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/messages.g.swiftdeps",
+    "swiftmodule" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/messages.g~partial.swiftmodule"
+  },
+  "/Users/haleclipse/.pub-cache/hosted/pub.dev/shared_preferences_foundation-2.5.4/darwin/shared_preferences_foundation/Sources/shared_preferences_foundation/SharedPreferencesPlugin.swift" : {
+    "const-values" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.swiftconstvalues",
+    "dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.d",
+    "diagnostics" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.dia",
+    "index-unit-output-path" : "/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.o",
+    "llvm-bc" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.bc",
+    "object" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.o",
+    "swift-dependencies" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin.swiftdeps",
+    "swiftmodule" : "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/Objects-normal/arm64/SharedPreferencesPlugin~partial.swiftmodule"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Products/Debug/shared_preferences_foundation/shared_preferences_foundation.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Products/Debug/shared_preferences_foundation/shared_preferences_foundation.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "shared_preferences_foundation-Swift.h",
+      'external-contents': "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/shared_preferences_foundation.build/unextended-interface-header.h",
+    }]
+    }]
+}

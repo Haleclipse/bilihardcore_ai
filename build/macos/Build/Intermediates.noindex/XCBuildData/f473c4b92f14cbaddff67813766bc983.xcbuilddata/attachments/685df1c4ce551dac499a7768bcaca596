@@ -1,0 +1,23 @@
+{
+  'version': 0,
+  'use-external-names': 'false',
+  'case-sensitive': 'false',
+  'roots': [{
+    'type': 'directory',
+    'name': "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Products/Debug/mobile_scanner/mobile_scanner.framework/Modules"
+    'contents': [{
+      'type': 'file',
+      'name': "module.modulemap",
+      'external-contents': "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/unextended-module.modulemap",
+    }]
+    },
+    {
+    'type': 'directory',
+    'name': "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Products/Debug/mobile_scanner/mobile_scanner.framework/Headers"
+    'contents': [{
+      'type': 'file',
+      'name': "mobile_scanner-Swift.h",
+      'external-contents': "/Users/haleclipse/WorkSpace/bilihardcore_ai/build/macos/Build/Intermediates.noindex/Pods.build/Debug/mobile_scanner.build/unextended-interface-header.h",
+    }]
+    }]
+}
