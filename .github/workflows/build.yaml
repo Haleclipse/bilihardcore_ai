@@ -1,4 +1,4 @@
-name: 构建与发布 (指定产物格式)
+name: 构建与发布
 
 on:
   push:
@@ -135,7 +135,7 @@ jobs:
           STAGING_DIR="BiliHardcore-AI Staging"
           FINAL_DMG_NAME="BiliHardcore-AI-macos-${{ env.RELEASE_VERSION }}.dmg"
           FINAL_ZIP_NAME="BiliHardcore-AI-macos-${{ env.RELEASE_VERSION }}.zip"
-          OUTPUT_DIR="../../../../release-artifacts/macos"
+          OUTPUT_DIR="../../../../../release-artifacts/macos"
 
 
           mkdir -p "$STAGING_DIR"
@@ -165,7 +165,7 @@ jobs:
         run: |
           cd build/windows/x64/runner/Release
           mkdir -p ../../../../../release-artifacts/windows
-          zip -r ../../../../../release-artifacts/windows/BiliHardcore-AI-windows-${{ env.RELEASE_VERSION }}.zip .
+          7z a -tzip -r ../../../../../release-artifacts/windows/BiliHardcore-AI-windows-${{ env.RELEASE_VERSION }}.zip .
 
         shell: bash
 
