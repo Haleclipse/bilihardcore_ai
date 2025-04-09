@@ -165,7 +165,7 @@ jobs:
         run: |
           cd build/windows/x64/runner/Release
           mkdir -p ../../../../../release-artifacts/windows
-          zip -r ../../../../../release-artifacts/windows/<你的应用名称>-windows-${{ env.RELEASE_VERSION }}.zip .
+          zip -r ../../../../../release-artifacts/windows/BiliHardcore-AI-windows-${{ env.RELEASE_VERSION }}.zip .
 
         shell: bash
 
