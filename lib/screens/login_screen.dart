@@ -111,40 +111,92 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final theme = ShadTheme.of(context);
+    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('登录B站账号'),
-        backgroundColor: theme.colorScheme.primary,
-        foregroundColor: theme.colorScheme.primaryForeground,
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.primaryForeground,
+        elevation: 0,
       ),
-      body: Center(
-        child: ShadCard(
-          width: 400,
-          title: const Text('扫描二维码登录'),
-          description: const Text('请使用B站APP扫描二维码登录'),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 24.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                if (_isLoading)
-                  const CircularProgressIndicator()
-                else if (_qrCodeUrl != null)
-                  QrImageView(
-                    data: _qrCodeUrl!,
-                    version: QrVersions.auto,
-                    size: 200.0,
-                  )
-                else
-                  const Text('获取二维码失败'),
-                const SizedBox(height: 24),
-                ShadButton.outline(
-                  leading: const Icon(Icons.refresh),
-                  onPressed: _getQrCode,
-                  child: const Text('刷新二维码'),
-                ),
-              ],
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              colorScheme.primary.withAlpha(13), // 约等于0.05的透明度
+              colorScheme.background,
+            ],
+          ),
+        ),
+        child: Center(
+          child: ShadCard(
+            width: 400,
+            title: const Text('扫描二维码登录'),
+            description: const Text('请使用B站APP扫描二维码登录'),
+            footer: Padding(
+              padding: const EdgeInsets.only(top: 8.0),
+              child: Text(
+                '二维码有效期为3分钟，过期后请刷新',
+                style: TextStyle(color: colorScheme.muted, fontSize: 12),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 24.0),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (_isLoading)
+                    const SizedBox(
+                      height: 200,
+                      child: Center(child: CircularProgressIndicator()),
+                    )
+                  else if (_qrCodeUrl != null)
+                    Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: colorScheme.border),
+                      ),
+                      padding: const EdgeInsets.all(12),
+                      child: QrImageView(
+                        data: _qrCodeUrl!,
+                        version: QrVersions.auto,
+                        size: 200.0,
+                        backgroundColor: Colors.white,
+                        dataModuleStyle: const QrDataModuleStyle(
+                          dataModuleShape: QrDataModuleShape.square,
+                          color: Colors.black,
+                        ),
+                      ),
+                    )
+                  else
+                    Container(
+                      height: 200,
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.error_outline,
+                            color: colorScheme.destructive,
+                            size: 48,
+                          ),
+                          const SizedBox(height: 16),
+                          const Text('获取二维码失败'),
+                        ],
+                      ),
+                    ),
+                  const SizedBox(height: 24),
+                  ShadButton.outline(
+                    width: double.infinity,
+                    leading: const Icon(Icons.refresh),
+                    onPressed: _getQrCode,
+                    child: const Text('刷新二维码'),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

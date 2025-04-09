@@ -10,28 +10,31 @@ class AppLogger {
       lineLength: 120,
       colors: true,
       printEmojis: true,
-      printTime: true,
+      dateTimeFormat: DateTimeFormat.onlyTimeAndSinceStart,
     ),
   );
-  
+
   static Logger get logger => _logger;
-  
-  static Future<void> logToFile(String message, {LogLevel level = LogLevel.info}) async {
+
+  static Future<void> logToFile(
+    String message, {
+    LogLevel level = LogLevel.info,
+  }) async {
     try {
       final directory = await getApplicationDocumentsDirectory();
       final logDir = Directory('${directory.path}/logs');
-      
+
       if (!await logDir.exists()) {
         await logDir.create(recursive: true);
       }
-      
+
       final now = DateTime.now();
       final fileName = '${now.year}-${now.month}-${now.day}.log';
       final file = File('${logDir.path}/$fileName');
-      
+
       final timestamp = now.toIso8601String();
       final levelStr = level.toString().split('.').last.toUpperCase();
-      
+
       await file.writeAsString(
         '[$timestamp] [$levelStr] $message\n',
         mode: FileMode.append,
@@ -42,11 +45,4 @@ class AppLogger {
   }
 }
 
-enum LogLevel {
-  verbose,
-  debug,
-  info,
-  warning,
-  error,
-  wtf,
-}
+enum LogLevel { verbose, debug, info, warning, error, wtf }
