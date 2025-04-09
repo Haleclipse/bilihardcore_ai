@@ -1,0 +1,169 @@
+name: 构建与发布 (指定产物格式)
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build_and_release:
+    name: 构建 ${{ matrix.platform }}
+
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - platform: android
+            os: ubuntu-latest
+          - platform: ios
+            os: macos-latest
+          - platform: windows
+            os: windows-latest
+          - platform: macos
+            os: macos-latest
+
+    steps:
+      - name: 🚚 拉取代码
+        uses: actions/checkout@v4
+
+      - name: 🏷️ 获取版本号 (Tag 名称)
+        id: get_version
+        run: echo "RELEASE_VERSION=${{ github.ref_name }}" >> $GITHUB_ENV
+        shell: bash
+
+      - name: 🐦 设置 Flutter 环境
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+
+          flutter-version: "3.29.0"
+
+      - name: ☕ [Android] 设置 Java 环境
+        if: matrix.platform == 'android'
+        uses: actions/setup-java@v4
+        with:
+          distribution: "zulu"
+
+          java-version: "17"
+          cache: "gradle"
+
+      - name: 💻 [Windows] 启用桌面支持
+        if: matrix.platform == 'windows'
+        run: flutter config --enable-windows-desktop
+      - name: 🍎 [macOS] 启用桌面支持
+        if: matrix.platform == 'macos'
+        run: flutter config --enable-macos-desktop
+
+      - name: 📦 获取依赖
+        run: flutter pub get
+
+      - name: 🤖 [Android] 构建 APKs
+        if: matrix.platform == 'android'
+        run: flutter build apk --release --split-per-abi
+
+      - name: 🍏 [iOS] 构建 App (未签名)
+        if: matrix.platform == 'ios'
+        run: flutter build ios --release --no-codesign
+
+      - name: 🪟 [Windows] 构建应用
+        if: matrix.platform == 'windows'
+        run: flutter build windows --release
+
+      - name: 🍎 [macOS] 构建 App
+        if: matrix.platform == 'macos'
+        run: flutter build macos --release
+
+      - name: 📝 [Android] 重命名 APKs
+        if: matrix.platform == 'android'
+
+        run: |
+          cd build/app/outputs/flutter-apk/
+          mv app-armeabi-v7a-release.apk BiliHardcore-AI-android-${{ env.RELEASE_VERSION }}-armeabi-v7a.apk
+          mv app-arm64-v8a-release.apk BiliHardcore-AI-android-${{ env.RELEASE_VERSION }}-arm64-v8a.apk
+          mv app-x86_64-release.apk BiliHardcore-AI-android-${{ env.RELEASE_VERSION }}-x86_64.apk
+          mv app-release.apk BiliHardcore-AI-android-${{ env.RELEASE_VERSION }}-universal.apk
+
+          mkdir -p ../../../../release-artifacts/android
+          mv BiliHardcore-AI-android-*.apk ../../../../release-artifacts/android/
+        shell: bash
+
+      - name: 🎁 [iOS] 打包 IPA 和 ZIP (未签名)
+        if: matrix.platform == 'ios'
+
+        run: |
+          cd build/ios/Release-iphoneos
+
+          mkdir -p Payload
+          cp -r Runner.app Payload/
+          zip -r ../../../release-artifacts/ios/BiliHardcore-AI-ios-${{ env.RELEASE_VERSION }}-unsigned.ipa Payload
+          rm -rf Payload
+
+          zip -r ../../../release-artifacts/ios/BiliHardcore-AI-ios-${{ env.RELEASE_VERSION }}-unsigned.zip Runner.app
+
+          mkdir -p ../../../release-artifacts/ios
+        shell: bash
+
+      - name: 🎁 [macOS] 打包 DMG 和 ZIP
+        if: matrix.platform == 'macos'
+
+        run: |
+          cd build/macos/Build/Products/Release
+          APP_NAME="BiliHardcore-AI.app"
+          STAGING_DIR="BiliHardcore-AI Staging"
+          FINAL_DMG_NAME="BiliHardcore-AI-macos-${{ env.RELEASE_VERSION }}.dmg"
+          FINAL_ZIP_NAME="BiliHardcore-AI-macos-${{ env.RELEASE_VERSION }}.zip"
+          OUTPUT_DIR="../../../../release-artifacts/macos"
+
+
+          mkdir -p "$STAGING_DIR"
+
+          cp -r "$APP_NAME" "$STAGING_DIR/"
+
+          ln -s /Applications "$STAGING_DIR/Applications"
+
+
+          hdiutil create -volname "BiliHardcore-AI" -srcfolder "$STAGING_DIR" -ov -format UDZO "$FINAL_DMG_NAME"
+
+
+          ditto -c -k --keepParent "$APP_NAME" "$FINAL_ZIP_NAME"
+
+
+          mkdir -p "$OUTPUT_DIR"
+          mv "$FINAL_DMG_NAME" "$OUTPUT_DIR/"
+          mv "$FINAL_ZIP_NAME" "$OUTPUT_DIR/"
+
+
+          rm -rf "$STAGING_DIR"
+        shell: bash
+
+      - name: 🎁 [Windows] 打包 ZIP
+        if: matrix.platform == 'windows'
+
+        run: |
+          cd build/windows/runner/Release
+          zip -r ../../../../release-artifacts/windows/BiliHardcore-AI-windows-${{ env.RELEASE_VERSION }}.zip .
+
+          mkdir -p ../../../../release-artifacts/windows
+        shell: bash
+
+      - name: ✨ 创建 GitHub Release 并上传产物
+        uses: softprops/action-gh-release@v2
+
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Release ${{ github.ref_name }}
+          generate_release_notes: true
+          prerelease: ${{ contains(github.ref_name, 'alpha') || contains(github.ref_name, 'beta') }}
+
+          files: |
+            release-artifacts/android/*.apk
+            release-artifacts/ios/*.ipa
+            release-artifacts/ios/*.zip
+            release-artifacts/macos/*.dmg
+            release-artifacts/macos/*.zip
+            release-artifacts/windows/*.zip
