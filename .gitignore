@@ -1,68 +1,56 @@
-# Flutter-related
-**/Flutter/ephemeral/
-**/Flutter/Flutter.podspec
-**/Flutter/Generated.xcconfig
-**/Flutter/flutter_export_environment.sh
-/.dart_tool/
-/Flutter-ShadcnUI.md
-
-# CocoaPods
-**/Pods/
-**/Podfile.lock
-
-# Build related
-build/
-DerivedData/
-
-# Xcode-related
-*.pbxuser
-*.mode1v3
-*.mode2v3
-*.perspectivev3
-*.xcworkspace
-*.xccheckout
-*.moved-aside
-**/dgph
-**/xcuserdata/
-*.xcscmblueprint
-*.xcuserstate
-
-# macOS specific
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
 .DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
-
-# Swift Package Manager
+.atom/
 .build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
 
-# Exceptions to above rules
-!default.pbxuser
-!default.mode1v3
-!default.mode2v3
-!default.perspectivev3
-!*.xcworkspace/contents.xcworkspacedata
-lib/screens/home_screen.dart
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins
 .flutter-plugins-dependencies
 devtools_options.yaml
+.pub-cache/
+.pub/
+/build/
+/bili-hardcore/
+/Flutter-ShadcnUI.md
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# riverpod generated files
+lib/gen/
+release.sh
+*.g.dart
+*.freezed.dart
+
+/.vscode/
