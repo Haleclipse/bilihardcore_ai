@@ -104,7 +104,6 @@ jobs:
           mv app-armeabi-v7a-release.apk BiliHardcore-AI-android-${{ env.RELEASE_VERSION }}-armeabi-v7a.apk
           mv app-arm64-v8a-release.apk BiliHardcore-AI-android-${{ env.RELEASE_VERSION }}-arm64-v8a.apk
           mv app-x86_64-release.apk BiliHardcore-AI-android-${{ env.RELEASE_VERSION }}-x86_64.apk
-          mv app-release.apk BiliHardcore-AI-android-${{ env.RELEASE_VERSION }}-universal.apk
 
           mkdir -p ../../../../release-artifacts/android
           mv BiliHardcore-AI-android-*.apk ../../../../release-artifacts/android/
@@ -132,7 +131,7 @@ jobs:
 
         run: |
           cd build/macos/Build/Products/Release
-          APP_NAME="BiliHardcore-AI.app"
+          APP_NAME="bilihardcore_ai.app"
           STAGING_DIR="BiliHardcore-AI Staging"
           FINAL_DMG_NAME="BiliHardcore-AI-macos-${{ env.RELEASE_VERSION }}.dmg"
           FINAL_ZIP_NAME="BiliHardcore-AI-macos-${{ env.RELEASE_VERSION }}.zip"
@@ -164,9 +163,9 @@ jobs:
         if: matrix.platform == 'windows'
 
         run: |
-          cd build/windows/runner/Release
-          mkdir -p ../../../../release-artifacts/windows
-          zip -r ../../../../release-artifacts/windows/BiliHardcore-AI-windows-${{ env.RELEASE_VERSION }}.zip .
+          cd build/windows/x64/runner/Release
+          mkdir -p ../../../../../release-artifacts/windows
+          zip -r ../../../../../release-artifacts/windows/<你的应用名称>-windows-${{ env.RELEASE_VERSION }}.zip .
 
         shell: bash
 
