@@ -31,6 +31,9 @@ class _ConfigScreenState extends ConsumerState<ConfigScreen> {
     if (config.llmType == LlmType.openAi) {
       _baseUrlController.text = config.baseUrl ?? '';
       _modelNameController.text = config.modelName ?? '';
+    } else if (config.llmType == LlmType.gemini) {
+      _baseUrlController.text = config.geminiBaseUrl ?? '';
+      _modelNameController.text = config.geminiModelName ?? '';
     }
   }
 
@@ -51,6 +54,12 @@ class _ConfigScreenState extends ConsumerState<ConfigScreen> {
             _selectedLlmType == LlmType.openAi ? _baseUrlController.text : null,
         modelName:
             _selectedLlmType == LlmType.openAi
+                ? _modelNameController.text
+                : null,
+        geminiBaseUrl:
+            _selectedLlmType == LlmType.gemini ? _baseUrlController.text : null,
+        geminiModelName:
+            _selectedLlmType == LlmType.gemini
                 ? _modelNameController.text
                 : null,
       );
@@ -91,36 +100,53 @@ class _ConfigScreenState extends ConsumerState<ConfigScreen> {
                     children: [
                       RadioListTile<LlmType>(
                         title: const Text('DeepSeek'),
+                        subtitle: const Text('仅需要API密钥'),
                         value: LlmType.deepSeek,
                         groupValue: _selectedLlmType,
                         onChanged: (value) {
                           if (value != null) {
                             setState(() {
                               _selectedLlmType = value;
+                              // 切换到DeepSeek时清空字段
+                              _baseUrlController.text = '';
+                              _modelNameController.text = '';
                             });
                           }
                         },
                       ),
                       RadioListTile<LlmType>(
                         title: const Text('Gemini'),
+                        subtitle: const Text('支持自定义端点和模型'),
                         value: LlmType.gemini,
                         groupValue: _selectedLlmType,
                         onChanged: (value) {
                           if (value != null) {
                             setState(() {
                               _selectedLlmType = value;
+                              // 切换到Gemini时清空并重新加载字段
+                              final config = ref.read(configProvider);
+                              _baseUrlController.text =
+                                  config.geminiBaseUrl ?? '';
+                              _modelNameController.text =
+                                  config.geminiModelName ?? '';
                             });
                           }
                         },
                       ),
                       RadioListTile<LlmType>(
                         title: const Text('OpenAI格式API（火山引擎、硅基流动等）'),
+                        subtitle: const Text('支持自定义端点和模型'),
                         value: LlmType.openAi,
                         groupValue: _selectedLlmType,
                         onChanged: (value) {
                           if (value != null) {
                             setState(() {
                               _selectedLlmType = value;
+                              // 切换到OpenAI时清空并重新加载字段
+                              final config = ref.read(configProvider);
+                              _baseUrlController.text = config.baseUrl ?? '';
+                              _modelNameController.text =
+                                  config.modelName ?? '';
                             });
                           }
                         },
@@ -139,15 +165,25 @@ class _ConfigScreenState extends ConsumerState<ConfigScreen> {
                       return null;
                     },
                   ),
-                  if (_selectedLlmType == LlmType.openAi) ...[
+                  if (_selectedLlmType == LlmType.openAi ||
+                      _selectedLlmType == LlmType.gemini) ...[
                     const SizedBox(height: 16),
                     ShadInputFormField(
                       id: 'baseUrl',
                       controller: _baseUrlController,
-                      label: const Text('API基础URL'),
-                      placeholder: const Text('例如: https://api.openai.com/v1'),
+                      label: Text(
+                        _selectedLlmType == LlmType.openAi
+                            ? 'API基础URL'
+                            : 'Gemini API基础URL',
+                      ),
+                      placeholder: Text(
+                        _selectedLlmType == LlmType.openAi
+                            ? '例如: https://api.openai.com/v1'
+                            : '例如: https://generativelanguage.googleapis.com',
+                      ),
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (_selectedLlmType == LlmType.openAi &&
+                            value.isEmpty) {
                           return 'API基础URL不能为空';
                         }
                         return null;
@@ -157,10 +193,19 @@ class _ConfigScreenState extends ConsumerState<ConfigScreen> {
                     ShadInputFormField(
                       id: 'modelName',
                       controller: _modelNameController,
-                      label: const Text('模型名称'),
-                      placeholder: const Text('例如: gpt-3.5-turbo'),
+                      label: Text(
+                        _selectedLlmType == LlmType.openAi
+                            ? '模型名称'
+                            : 'Gemini模型名称',
+                      ),
+                      placeholder: Text(
+                        _selectedLlmType == LlmType.openAi
+                            ? '例如: gpt-3.5-turbo'
+                            : '例如: gemini-2.0-flash',
+                      ),
                       validator: (value) {
-                        if (value.isEmpty) {
+                        if (_selectedLlmType == LlmType.openAi &&
+                            value.isEmpty) {
                           return '模型名称不能为空';
                         }
                         return null;

@@ -82,9 +82,19 @@ $optionsText
 
   Future<String> _callGemini(String prompt) async {
     try {
+      // 检查是否有自定义端点和模型
+      final baseUrl =
+          _config.geminiBaseUrl ?? 'https://generativelanguage.googleapis.com';
+      final modelName = _config.geminiModelName ?? 'gemini-2.0-flash';
+
+      // 构建完整的API URL
+      final apiUrl = '$baseUrl/v1beta/models/$modelName:generateContent';
+
+      AppLogger.logger.d('使用Gemini API: $apiUrl');
+
       // 根据原项目中的Gemini API调用方式进行调整
       final response = await _dio.post(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent',
+        apiUrl,
         options: Options(headers: {'Content-Type': 'application/json'}),
         queryParameters: {'key': _config.apiKey},
         data: {
