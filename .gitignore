@@ -3,7 +3,8 @@
 **/Flutter/Flutter.podspec
 **/Flutter/Generated.xcconfig
 **/Flutter/flutter_export_environment.sh
-.dart_tool
+/.dart_tool/
+/Flutter-ShadcnUI.md
 
 # CocoaPods
 **/Pods/
@@ -65,11 +66,3 @@ Temporary Items
 lib/screens/home_screen.dart
 .flutter-plugins-dependencies
 devtools_options.yaml
-.dart_tool/package_config.json
-.dart_tool/flutter_build/804dc2e3bac1b501de0ddb9636e882d6/.filecache
-.dart_tool/flutter_build/804dc2e3bac1b501de0ddb9636e882d6/app.dill
-.dart_tool/flutter_build/804dc2e3bac1b501de0ddb9636e882d6/debug_macos_bundle_flutter_assets.stamp
-.dart_tool/flutter_build/804dc2e3bac1b501de0ddb9636e882d6/flutter_assets.d
-.dart_tool/flutter_build/804dc2e3bac1b501de0ddb9636e882d6/kernel_snapshot_program.d
-.dart_tool/flutter_build/804dc2e3bac1b501de0ddb9636e882d6/kernel_snapshot_program.stamp
-build/cache.dill.track.dill
