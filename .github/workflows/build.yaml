@@ -54,13 +54,31 @@ jobs:
 
       - name: 💻 [Windows] 启用桌面支持
         if: matrix.platform == 'windows'
-        run: flutter config --enable-windows-desktop
+        run: |
+          flutter config --enable-windows-desktop
+
       - name: 🍎 [macOS] 启用桌面支持
         if: matrix.platform == 'macos'
-        run: flutter config --enable-macos-desktop
+        run: |
+          flutter config --enable-macos-desktop
 
       - name: 📦 获取依赖
         run: flutter pub get
+
+      - name: 🔧 [Android] 尝试安装特定 NDK 版本
+        if: matrix.platform == 'android'
+        run: $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;29.0.13113456" || $ANDROID_HOME/tools/bin/sdkmanager "ndk;29.0.13113456"
+        shell: bash
+
+      - name: 🤖 [Android] 接受 SDK 许可协议
+        if: matrix.platform == 'android' # 确保只在 Android 构建时运行
+        run: |
+          echo "Attempting to accept licenses using multiple paths..."
+          yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || \
+          yes | $ANDROID_HOME/tools/bin/sdkmanager --licenses || \
+          yes | sdkmanager --licenses || \
+          echo "License acceptance attempts finished. Check logs if build still fails."
+        shell: bash
 
       - name: 🤖 [Android] 构建 APKs
         if: matrix.platform == 'android'
@@ -99,13 +117,14 @@ jobs:
           cd build/ios/Release-iphoneos
 
           mkdir -p Payload
+          mkdir -p ../../../release-artifacts/ios
+
           cp -r Runner.app Payload/
           zip -r ../../../release-artifacts/ios/BiliHardcore-AI-ios-${{ env.RELEASE_VERSION }}-unsigned.ipa Payload
           rm -rf Payload
 
           zip -r ../../../release-artifacts/ios/BiliHardcore-AI-ios-${{ env.RELEASE_VERSION }}-unsigned.zip Runner.app
 
-          mkdir -p ../../../release-artifacts/ios
         shell: bash
 
       - name: 🎁 [macOS] 打包 DMG 和 ZIP
@@ -146,9 +165,9 @@ jobs:
 
         run: |
           cd build/windows/runner/Release
+          mkdir -p ../../../../release-artifacts/windows
           zip -r ../../../../release-artifacts/windows/BiliHardcore-AI-windows-${{ env.RELEASE_VERSION }}.zip .
 
-          mkdir -p ../../../../release-artifacts/windows
         shell: bash
 
       - name: ✨ 创建 GitHub Release 并上传产物
